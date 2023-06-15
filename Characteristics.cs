@@ -8,6 +8,7 @@ public class Characteristics_Character{
     private int skill;
     private int health;
 
+
     public int Velocity { get => velocity; set => velocity = value; }
     public int Force { get => force; set => force = value; }
     public int Level { get => level; set => level = value; }

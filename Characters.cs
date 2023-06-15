@@ -28,6 +28,7 @@ public class Character{
 
 }
 
+
 public class factoryCharacters{
     private Character generateCharacterGeneric(typeCharacter type){
         var createCharacter = new Character(type);
