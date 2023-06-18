@@ -1,5 +1,6 @@
 namespace RPG;
 
+
 // Los tipos de personajes que aparecerán en el juego
 public enum TipoPersonaje
 {
