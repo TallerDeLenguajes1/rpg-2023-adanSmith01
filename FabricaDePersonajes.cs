@@ -4,7 +4,6 @@ public static class FabricaDePersonajes
 {
     private static Personaje GenerarPersonaje(TipoPersonaje tipo){
         Personaje nuevoPersonaje = new Personaje();
-        nuevoPersonaje.DatosSecundarios.Salud = 100;
         
         switch(tipo){
             case TipoPersonaje.Sicario:
@@ -23,6 +22,8 @@ public static class FabricaDePersonajes
             nuevoPersonaje = crearAgenteEspecial();
             break;
         }
+
+        nuevoPersonaje.DatosSecundarios.Salud = 100;
 
         return nuevoPersonaje;
     }
@@ -62,7 +63,7 @@ public static class FabricaDePersonajes
         datos.Add("fuerza", 20);
         datos.Add("armadura", 40);
 
-        string[ , ] nombresYApodosDePrisioneros = new string[ , ]{{"Jeremy", "El salvaje"},{"Sofía", "La gata"},{"Gastón", "El sangriento"}};
+        string[ , ] nombresYApodosDePrisioneros = new string[ , ]{{"Jeremy", "El salvaje"},{"Sofia", "La gata"},{"Gaston", "El sangriento"}};
         prisionero.Nombre = nombresYApodosDePrisioneros[aux, 0];
         prisionero.Apodo = nombresYApodosDePrisioneros[aux, 1];
         prisionero.Tipo = TipoPersonaje.Prisionero;
@@ -87,7 +88,7 @@ public static class FabricaDePersonajes
         datos.Add("fuerza", 15);
         datos.Add("armadura", 10);
 
-        string[ , ] nombresYApodosDeLadrones = new string[ , ]{{"Jessica", "La sigilosa"},{"Lucas", "El señor de la noche"},{"Jorge", "El picarón"}};
+        string[ , ] nombresYApodosDeLadrones = new string[ , ]{{"Jessica", "La sigilosa"},{"Lucas", "El nocturno"},{"Jorge", "El picaron"}};
         ladron.Nombre = nombresYApodosDeLadrones[aux, 0];
         ladron.Apodo = nombresYApodosDeLadrones[aux, 1];
         ladron.Tipo = TipoPersonaje.Ladron;
@@ -137,7 +138,7 @@ public static class FabricaDePersonajes
         datos.Add("fuerza", 20);
         datos.Add("armadura", 40);
 
-        string[ , ] nombresYApodosDeAgentesEspeciales = new string[ , ]{{"Ricardo", "El más hábil"},{"Estela", "La actriz"},{"Gastón", "El guerrero"}};
+        string[ , ] nombresYApodosDeAgentesEspeciales = new string[ , ]{{"Ricardo", "El mas hábil"},{"Estela", "La actriz"},{"Guillermo", "El guerrero"}};
         agenteEspecial.Nombre = nombresYApodosDeAgentesEspeciales[aux, 0];
         agenteEspecial.Apodo = nombresYApodosDeAgentesEspeciales[aux, 1];
         agenteEspecial.Tipo = TipoPersonaje.AgenteEspecial;
