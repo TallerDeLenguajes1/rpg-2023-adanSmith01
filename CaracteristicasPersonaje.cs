@@ -1,6 +1,5 @@
 namespace RPG;
 
-
 public class Caracteristicas
 {
     private int velocidad;
