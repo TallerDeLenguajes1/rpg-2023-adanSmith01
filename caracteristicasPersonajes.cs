@@ -1,19 +1,18 @@
 namespace RPG;
 
-public class Caracteristicas{
+public class Caracteristicas
+{
     private int velocidad;
     private int destreza;
     private int fuerza;
     private int nivel;
     private int armadura;
-    private int salud;
-    private string descripcion;
+    private float salud;
 
     public int Velocidad { get => velocidad; set => velocidad = value; }
     public int Destreza { get => destreza; set => destreza = value; }
     public int Fuerza { get => fuerza; set => fuerza = value; }
     public int Nivel { get => nivel; set => nivel = value; }
     public int Armadura { get => armadura; set => armadura = value; }
-    public int Salud { get => salud; set => salud = value; }
-    public string Descripcion { get => descripcion; set => descripcion = value; }
+    public float Salud { get => salud; set => salud = value; }
 }

@@ -1,11 +1,13 @@
 namespace RPG;
 
+// Los tipos de personajes que aparecerán en el juego
 public enum TipoPersonaje
 {
-    Caballero,
-    Arquera,
-    Ogro,
-    Bruja
+    Sicario,
+    Prisionero,
+    Ladron,
+    Policia,
+    AgenteEspecial
 }
 
 public class Personaje
@@ -15,7 +17,7 @@ public class Personaje
     private TipoPersonaje tipo;
     private DateTime fechaNac;
     private int edad;
-    private Caracteristicas datosSecundarios;
+    private Caracteristicas datosSecundarios = new Caracteristicas();
 
     public string Nombre { get => nombre; set => nombre = value; }
     public string Apodo { get => apodo; set => apodo = value; }
