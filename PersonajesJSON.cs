@@ -1,9 +1,9 @@
 namespace RPG;
 using System.Text.Json;
 
-public static class PersonajesJSON
+public class PersonajesJSON
 {
-    public static void GuardarPersonajes(List<Personaje> listaPersonajes, string nombreArchivo){
+    public void GuardarPersonajes(List<Personaje> listaPersonajes, string nombreArchivo){
         string listaJSON = JsonSerializer.Serialize(listaPersonajes);
 
         if(!File.Exists(nombreArchivo)){
@@ -11,7 +11,7 @@ public static class PersonajesJSON
         }
     }
 
-    public static List<Personaje> LeerPersonajes(string nombreArchivo){
+    public List<Personaje> LeerPersonajes(string nombreArchivo){
         List<Personaje> listaP = new List<Personaje>();
 
         if(File.Exists(nombreArchivo)){
@@ -22,7 +22,7 @@ public static class PersonajesJSON
         return listaP;
     }
 
-    public static bool ExisteArchivoPersonajes(string nombreArchivo){
+    public bool ExisteArchivoPersonajes(string nombreArchivo){
         FileInfo archivoJson = new FileInfo(nombreArchivo);
 
         if(File.Exists(nombreArchivo) && archivoJson.Length > 0){
