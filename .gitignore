@@ -422,5 +422,6 @@ obj/
 .ionide
 
 .vscode
+rpg-2023-adanSmith01.sln
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,csharp,dotnetcore
