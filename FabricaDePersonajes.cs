@@ -1,8 +1,8 @@
 namespace RPG;
 
-public static class FabricaDePersonajes
+public class FabricaDePersonajes
 {
-    private static Personaje GenerarPersonaje(TipoPersonaje tipo){
+    private  Personaje GenerarPersonaje(TipoPersonaje tipo){
         Personaje nuevoPersonaje = new Personaje();
         
         switch(tipo){
@@ -28,15 +28,9 @@ public static class FabricaDePersonajes
         return nuevoPersonaje;
     }
 
-    private static Personaje crearSicario(){
+    private  Personaje crearSicario(){
         Personaje sicario = new Personaje();
         int aux = new Random().Next(0, 3);
-        int nivelAleatorio = new Random().Next(1, 5);
-        Dictionary<string, int> datos = new Dictionary<string, int>();
-        datos.Add("velocidad", 30);
-        datos.Add("destreza", 7);
-        datos.Add("fuerza", 10);
-        datos.Add("armadura", 50);
 
         string[ , ] nombresYApodosDeSicarios = new string[ , ]{{"Dennis", "El oculto"},{"Sara", "La inocente"},{"Robert", "El ingenioso"}};
         sicario.Nombre = nombresYApodosDeSicarios[aux, 0];
@@ -44,49 +38,37 @@ public static class FabricaDePersonajes
         sicario.Tipo = TipoPersonaje.Sicario;
         sicario.FechaNac = new DateTime(new Random().Next(1980, 2001), new Random().Next(1, 13), new Random().Next(1, 30)).Date;
         sicario.Edad = (DateTime.Now.Subtract(sicario.FechaNac).Days) / 365;
-        sicario.DatosSecundarios.Nivel = nivelAleatorio;
-        sicario.DatosSecundarios.Velocidad = datos["velocidad"]*nivelAleatorio;
-        sicario.DatosSecundarios.Destreza = datos["destreza"]*nivelAleatorio;
-        sicario.DatosSecundarios.Fuerza = datos["fuerza"]*nivelAleatorio;
-        sicario.DatosSecundarios.Armadura = datos["armadura"]*nivelAleatorio;
+        sicario.DatosSecundarios.Nivel = new Random().Next(7, 11);
+        sicario.DatosSecundarios.Velocidad = new Random().Next(7, 11);
+        sicario.DatosSecundarios.Destreza = new Random().Next(4, 6);
+        sicario.DatosSecundarios.Fuerza = new Random().Next(7, 11);
+        sicario.DatosSecundarios.Armadura = new Random().Next(7, 11);
 
         return sicario;
     }
 
-    private static Personaje crearPrisionero(){
+    private  Personaje crearPrisionero(){
         Personaje prisionero = new Personaje();
         int aux = new Random().Next(0, 3);
-        int nivelAleatorio = new Random().Next(1, 5);
-        Dictionary<string, int> datos = new Dictionary<string, int>();
-        datos.Add("velocidad", 50);
-        datos.Add("destreza", 6);
-        datos.Add("fuerza", 20);
-        datos.Add("armadura", 40);
-
+    
         string[ , ] nombresYApodosDePrisioneros = new string[ , ]{{"Jeremy", "El salvaje"},{"Sofia", "La gata"},{"Gaston", "El sangriento"}};
         prisionero.Nombre = nombresYApodosDePrisioneros[aux, 0];
         prisionero.Apodo = nombresYApodosDePrisioneros[aux, 1];
         prisionero.Tipo = TipoPersonaje.Prisionero;
         prisionero.FechaNac = new DateTime(new Random().Next(1980, 2001), new Random().Next(1, 13), new Random().Next(1, 30)).Date;
         prisionero.Edad = (DateTime.Now.Subtract(prisionero.FechaNac).Days) / 365;
-        prisionero.DatosSecundarios.Nivel = nivelAleatorio;
-        prisionero.DatosSecundarios.Velocidad = datos["velocidad"]*nivelAleatorio;
-        prisionero.DatosSecundarios.Destreza = datos["destreza"]*nivelAleatorio;
-        prisionero.DatosSecundarios.Fuerza = datos["fuerza"]*nivelAleatorio;
-        prisionero.DatosSecundarios.Armadura = datos["armadura"]*nivelAleatorio;
+        prisionero.DatosSecundarios.Nivel = new Random().Next(2, 4);
+        prisionero.DatosSecundarios.Velocidad = new Random().Next(4, 7);
+        prisionero.DatosSecundarios.Destreza = new Random().Next(2, 4);
+        prisionero.DatosSecundarios.Fuerza = new Random().Next(4, 7);
+        prisionero.DatosSecundarios.Armadura = new Random().Next(4, 7);
 
         return prisionero;
     }
 
-    private static Personaje crearLadron(){
+    private  Personaje crearLadron(){
         Personaje ladron = new Personaje();
         int aux = new Random().Next(0, 3);
-        int nivelAleatorio = new Random().Next(1, 5);
-        Dictionary<string, int> datos = new Dictionary<string, int>();
-        datos.Add("velocidad", 30);
-        datos.Add("destreza", 4);
-        datos.Add("fuerza", 15);
-        datos.Add("armadura", 10);
 
         string[ , ] nombresYApodosDeLadrones = new string[ , ]{{"Jessica", "La sigilosa"},{"Lucas", "El nocturno"},{"Jorge", "El picaron"}};
         ladron.Nombre = nombresYApodosDeLadrones[aux, 0];
@@ -94,24 +76,18 @@ public static class FabricaDePersonajes
         ladron.Tipo = TipoPersonaje.Ladron;
         ladron.FechaNac = new DateTime(new Random().Next(1980, 2001), new Random().Next(1, 13), new Random().Next(1, 30)).Date;
         ladron.Edad = (DateTime.Now.Subtract(ladron.FechaNac).Days) / 365;
-        ladron.DatosSecundarios.Nivel = nivelAleatorio;
-        ladron.DatosSecundarios.Velocidad = datos["velocidad"]*nivelAleatorio;
-        ladron.DatosSecundarios.Destreza = datos["destreza"]*nivelAleatorio;
-        ladron.DatosSecundarios.Fuerza = datos["fuerza"]*nivelAleatorio;
-        ladron.DatosSecundarios.Armadura = datos["armadura"]*nivelAleatorio;
+        ladron.DatosSecundarios.Nivel = new Random().Next(1, 3);
+        ladron.DatosSecundarios.Velocidad = new Random().Next(1, 4);
+        ladron.DatosSecundarios.Destreza = new Random().Next(1, 3);
+        ladron.DatosSecundarios.Fuerza = new Random().Next(1, 4);
+        ladron.DatosSecundarios.Armadura = new Random().Next(1, 4);
 
         return ladron;
     }
 
-    private static Personaje crearPolicia(){
+    private  Personaje crearPolicia(){
         Personaje policia = new Personaje();
         int aux = new Random().Next(0, 3);
-        int nivelAleatorio = new Random().Next(1, 5);
-        Dictionary<string, int> datos = new Dictionary<string, int>();
-        datos.Add("velocidad", 50);
-        datos.Add("destreza", 5);
-        datos.Add("fuerza", 25);
-        datos.Add("armadura", 35);
 
         string[ , ] nombresYApodosDePolicias = new string[ , ]{{"Miguel", "El grosero"},{"Camila", "La gritona"},{"Joshua", "El agresivo"}};
         policia.Nombre = nombresYApodosDePolicias[aux, 0];
@@ -119,24 +95,18 @@ public static class FabricaDePersonajes
         policia.Tipo = TipoPersonaje.Policia;
         policia.FechaNac = new DateTime(new Random().Next(1980, 2001), new Random().Next(1, 13), new Random().Next(1, 30)).Date;
         policia.Edad = (DateTime.Now.Subtract(policia.FechaNac).Days) / 365;
-        policia.DatosSecundarios.Nivel = nivelAleatorio;
-        policia.DatosSecundarios.Velocidad = datos["velocidad"]*nivelAleatorio;
-        policia.DatosSecundarios.Destreza = datos["destreza"]*nivelAleatorio;
-        policia.DatosSecundarios.Fuerza = datos["fuerza"]*nivelAleatorio;
-        policia.DatosSecundarios.Armadura = datos["armadura"]*nivelAleatorio;
+        policia.DatosSecundarios.Nivel = new Random().Next(1, 6);
+        policia.DatosSecundarios.Velocidad = new Random().Next(1, 6);
+        policia.DatosSecundarios.Destreza = new Random().Next(1, 4);
+        policia.DatosSecundarios.Fuerza = new Random().Next(1, 6);
+        policia.DatosSecundarios.Armadura = new Random().Next(1, 6);
 
         return policia;
     }
 
-    private static Personaje crearAgenteEspecial(){
+    private  Personaje crearAgenteEspecial(){
         Personaje agenteEspecial = new Personaje();
         int aux = new Random().Next(0, 3);
-        int nivelAleatorio = new Random().Next(1, 5);
-        Dictionary<string, int> datos = new Dictionary<string, int>();
-        datos.Add("velocidad", 50);
-        datos.Add("destreza", 6);
-        datos.Add("fuerza", 20);
-        datos.Add("armadura", 40);
 
         string[ , ] nombresYApodosDeAgentesEspeciales = new string[ , ]{{"Ricardo", "El mas hábil"},{"Estela", "La actriz"},{"Guillermo", "El guerrero"}};
         agenteEspecial.Nombre = nombresYApodosDeAgentesEspeciales[aux, 0];
@@ -144,16 +114,16 @@ public static class FabricaDePersonajes
         agenteEspecial.Tipo = TipoPersonaje.AgenteEspecial;
         agenteEspecial.FechaNac = new DateTime(new Random().Next(1980, 2001), new Random().Next(1, 13), new Random().Next(1, 30)).Date;
         agenteEspecial.Edad = (DateTime.Now.Subtract(agenteEspecial.FechaNac).Days) / 365;
-        agenteEspecial.DatosSecundarios.Nivel = nivelAleatorio;
-        agenteEspecial.DatosSecundarios.Velocidad = datos["velocidad"]*nivelAleatorio;
-        agenteEspecial.DatosSecundarios.Destreza = datos["destreza"]*nivelAleatorio;
-        agenteEspecial.DatosSecundarios.Fuerza = datos["fuerza"]*nivelAleatorio;
-        agenteEspecial.DatosSecundarios.Armadura = datos["armadura"]*nivelAleatorio;
+        agenteEspecial.DatosSecundarios.Nivel = new Random().Next(5, 11);
+        agenteEspecial.DatosSecundarios.Velocidad = new Random().Next(5, 11);
+        agenteEspecial.DatosSecundarios.Destreza = new Random().Next(3, 6);
+        agenteEspecial.DatosSecundarios.Fuerza = new Random().Next(5, 11);
+        agenteEspecial.DatosSecundarios.Armadura = new Random().Next(5, 11);
 
         return agenteEspecial;
     }
 
-    private static bool sonIguales(Personaje p1, Personaje p2){
+    private  bool sonIguales(Personaje p1, Personaje p2){
         bool coincidenNombre = (p1.Nombre == p2.Nombre);
         bool coincidenApodo = (p1.Apodo == p2.Apodo);
         bool coincidenFecha = (p1.FechaNac == p2.FechaNac);
@@ -166,7 +136,7 @@ public static class FabricaDePersonajes
 
         return (coincidenNombre || coincidenApodo || coincidenFecha || coincidenEdad || coincidenVelocidad || coincidenDestreza || coincidenFuerza || coincidenNivel || coincidenArmadura);
     }
-    public static List<Personaje> GenerarListaPersonajesRPG(){
+    public  List<Personaje> GenerarListaPersonajesRPG(){
         List<Personaje> listaPersonajes = new List<Personaje>();
         foreach (TipoPersonaje tipoP in Enum.GetValues(typeof(TipoPersonaje))){
             var personaje1 = new Personaje();
