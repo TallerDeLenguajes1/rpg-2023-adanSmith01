@@ -2,7 +2,10 @@ namespace RPG;
 
 public class FabricaDePersonajes
 {
-    private  Personaje GenerarPersonaje(TipoPersonaje tipo){
+    /*private string ObtenerNacionalidadPersonaje(string nombrePersonaje){
+        string url = 
+    }*/
+    private Personaje GenerarPersonaje(TipoPersonaje tipo){
         Personaje nuevoPersonaje = new Personaje();
         
         switch(tipo){
