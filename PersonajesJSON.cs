@@ -25,7 +25,7 @@ public class PersonajesJSON
     public bool ExisteArchivoPersonajes(string nombreArchivo){
         FileInfo archivoJson = new FileInfo(nombreArchivo);
 
-        if(File.Exists(nombreArchivo) && archivoJson.Length > 0){
+        if(archivoJson.Exists && archivoJson.Length > 0){
             return true;
         } else{
             return false;
