@@ -15,11 +15,11 @@ public enum TipoPersonaje
     [EnumMember(Value = "Ladron")]
     Ladron,
 
-    [EnumMember(Value = "Policia")]
-    Policia,
+    [EnumMember(Value = "Mafioso")]
+    Mafioso,
 
-    [EnumMember(Value = "AgenteEspecial")]
-    AgenteEspecial
+    [EnumMember(Value = "Terrorista")]
+    Terrorista
 }
 
 public class Personaje
@@ -28,7 +28,7 @@ public class Personaje
     private string apodo;
     private TipoPersonaje tipo;
     private DateTime fechaNac;
-    private string nacionalidad;
+    private string paisOrigen;
     private int edad;
     private CaracteristicasPersonaje caracteristicas;
 
@@ -39,7 +39,7 @@ public class Personaje
     public TipoPersonaje Tipo { get => tipo; set => tipo = value; }
     public DateTime FechaNac { get => fechaNac; set => fechaNac = value; }
     public int Edad { get => edad; set => edad = value; }
-    public string Nacionalidad { get => nacionalidad; set => nacionalidad = value;}
+    public string PaisOrigen { get => paisOrigen; set => paisOrigen = value;}
     public CaracteristicasPersonaje Caracteristicas { get => caracteristicas; set => caracteristicas = value; }
 
 }
