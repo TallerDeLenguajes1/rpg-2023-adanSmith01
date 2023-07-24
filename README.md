@@ -1,15 +1,16 @@
 ## Descripción del juego
 
-Es un minijuego de combate de 10 personajes que se dividen en dos grupos de 5 personajes. 
+### ¿Qué pasaría si se juntan los 10 criminales más buscados en el mundo para ponerlos a luchar?
+De esto tratará este juego.
 
-Existen 5 tipos de personaje:
-- Sicarios.
-- Prisioneros.
-- Ladrones.
-- Policias.
-- Agentes Especiales.
+BLOOD FIGHT es un juego en donde se reunen a los 10 criminales más buscados en el mundo para una lucha de 1 vs 1.
+Estos criminales nunca llegaron a ser atrapados, debido a sus grandes y extraordinarias habilidades para escapar de la justicia.
+Pero, ahora, han sido invocados a un solo lugar por un jugoso, precioso y asombroso premio, el cual es UN TRILLÓN DE DÓLARES (bastante plata, ¿verdad?).
 
-Habiendo dos personajes del mismo tipo por cada uno de los cinco tipos de personaje existentes.
+Entre esos criminales se encuentran 5 tipos principales:
 
-En cada grupo se decidirá quien será el ganador respectivo para luego finalizar con un combate final que decidirá 
-¿QUIÉN SE LLEVARÁ EL TROFEO A CASA?
+- Ladron.
+- Psicopata.
+- Mafioso.
+- Sicario.
+- Terrorista.
