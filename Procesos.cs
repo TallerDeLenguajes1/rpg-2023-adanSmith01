@@ -6,11 +6,12 @@ public static class Procesos
     const int AJUSTE = 500;
     const int MAX_JUGADORES = 10;
 
-    private static void Combate(Jugador P1, Jugador P2, int efectPersonajeP1, int efectPersonajeP2){
+    private static void Combate(Jugador P1, Jugador P2, int efectividadP1, int efectividadP2){
         int ataqueP1 = 0, defensaP1 = 0;
         int ataqueP2 = 0, defensaP2 = 0;
         float danioP1 = 0f, danioP2 = 0f;
         bool turnoP1 = true;
+        int rnd = 0;
 
         ataqueP1 = P1.Luchador.Caracteristicas.Fuerza * P1.Luchador.Caracteristicas.Destreza * P1.Luchador.Caracteristicas.Nivel;
         defensaP1 = P1.Luchador.Caracteristicas.Velocidad * P1.Luchador.Caracteristicas.Blindaje;
@@ -18,33 +19,33 @@ public static class Procesos
         ataqueP2 = P2.Luchador.Caracteristicas.Fuerza * P2.Luchador.Caracteristicas.Destreza * P2.Luchador.Caracteristicas.Nivel;
         defensaP2 = P2.Luchador.Caracteristicas.Velocidad * P2.Luchador.Caracteristicas.Blindaje;
 
-        Console.WriteLine($"\n========{P1.NombreJugador.ToUpper()} VS  {P2.NombreJugador.ToUpper()}========\n");
-        Console.WriteLine($"{P1.Luchador.Nombre.ToUpper()}, {P1.Luchador.Apodo.ToUpper()}\t\t\t\t\t{P2.Luchador.Nombre.ToUpper()}, {P2.Luchador.Apodo.ToUpper()}");
-        Console.WriteLine($"Ataque: {ataqueP1}\t\t\t\t\t Ataque: {ataqueP2}");
-        Console.WriteLine($"Defensa: {defensaP1}\t\t\t\t\t Defensa: {defensaP2}");
-        Console.WriteLine($"Efectividad: {efectPersonajeP1}\t\t\t\t\t Efectividad: {efectPersonajeP2}");
-        Console.WriteLine($"Salud: {P1.Luchador.Caracteristicas.Salud.ToString("0.0")}% \t\t\t\t\t Salud: {P2.Luchador.Caracteristicas.Salud.ToString("0.0")}% ");
-
+        InterfazRPG.PresentacionCombatientes(P1, ataqueP1, defensaP1, efectividadP1, P2, ataqueP2, defensaP2, efectividadP2);
         Console.WriteLine("\nPresione ENTER para continuar");
         Console.ReadKey();
 
-        int cursorL = Console.CursorLeft;
-        int cursorT = Console.CursorTop;
-
+        Console.WriteLine("\n═══════════════════════ ESTADO DEL COMBATE ═════════════════════════");
         while((P1.Luchador.Caracteristicas.Salud > 0) && (P2.Luchador.Caracteristicas.Salud > 0)){
+            rnd = new Random().Next(1, 6);
+            Thread.Sleep(900);
+
             if(turnoP1){
-                danioP2 = (float)((ataqueP1 * efectPersonajeP1) - defensaP2) / AJUSTE;
+                danioP2 = (float)((ataqueP1 * efectividadP1) - defensaP2) / AJUSTE;
                 P2.Luchador.Caracteristicas.Salud -= Math.Abs(danioP2);
                 turnoP1 = false;
+                Console.WriteLine($"\n                    {P1.Luchador.Nombre} ATACA A {P2.Luchador.Nombre}            ");
             } else{
-                danioP1 = (float)((ataqueP2 * efectPersonajeP2) - defensaP1) / AJUSTE;
+                danioP1 = (float)((ataqueP2 * efectividadP2) - defensaP1) / AJUSTE;
                 P1.Luchador.Caracteristicas.Salud -= Math.Abs(danioP1);
                 turnoP1 = true;
+                Console.WriteLine($"\n                    {P2.Luchador.Nombre} ATACA A {P1.Luchador.Nombre}             ");
             }
 
-            Console.SetCursorPosition(cursorL, cursorT);
-            if((P1.Luchador.Caracteristicas.Salud > 0) && (P2.Luchador.Caracteristicas.Salud > 0)) Console.Write($"Salud: {P1.Luchador.Caracteristicas.Salud.ToString("0.0")}%  Salud: {P2.Luchador.Caracteristicas.Salud.ToString("0.0")}% ");
-            Thread.Sleep(300);
+            Thread.Sleep(1000);
+            if(P1.Luchador.Caracteristicas.Salud > 0 && P2.Luchador.Caracteristicas.Salud > 0){
+                InterfazRPG.Comentarios(rnd);
+            } else{
+                InterfazRPG.Comentarios(6);
+            }
         }
     }
 
@@ -77,13 +78,15 @@ public static class Procesos
                     nombreJugador = Console.ReadLine();
                 }while(nombreJugador.Length != 3);
             } else{
-                nombreJugador = $"JUG{i + 1}";
+                nombreJugador = $"JUG_{i + 1}";
             }
             J.NombreJugador = nombreJugador.ToUpper();
             J.Luchador = listaP[i];
             listaJugadores.Add(J);
         }
 
+        listaP.Clear();
+        
         return listaJugadores;
     }
 
@@ -93,8 +96,16 @@ public static class Procesos
         Jugador ganadorPelea = new Jugador();
 
         if((P1.Luchador.Caracteristicas.Salud > P2.Luchador.Caracteristicas.Salud)){
+            Thread.Sleep(1000);
+            Console.WriteLine($"\n                         {P2.NombreJugador} HA PERDIDO                   \n");
+            Thread.Sleep(1000);
+            Console.WriteLine($"                     ¡¡¡ VICTORIA PARA {P1.NombreJugador} !!!           \n");
             ganadorPelea = P1;
         } else{
+            Thread.Sleep(1000);
+            Console.WriteLine($"\n                        {P1.NombreJugador} HA PERDIDO                    \n");
+            Thread.Sleep(1000);
+            Console.WriteLine($"                     ¡¡¡ VICTORIA PARA {P2.NombreJugador} !!!           \n");
             ganadorPelea = P2;
         }
 
@@ -152,7 +163,6 @@ public static class Procesos
 
             Combate(P1, P2, efectPersonajeP1, efectPersonajeP2);
             ganadorPelea = DecidirGanadorDelCombate(P1, P2);
-            Console.WriteLine("//////// PELEA FINALIZADA ////////");
 
             if(aux.Count == 10) torneoFinalizado = true;
 
