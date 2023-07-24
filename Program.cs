@@ -15,11 +15,10 @@ internal class Program
 
 
         if(!personajesJSON.ExisteArchivoPersonajes(rutaJSON)) personajesJSON.GuardarPersonajes(fabricaPersonajes.GenerarListaPersonajesRPG(), rutaJSON);
-        listaPersonajes = personajesJSON.LeerPersonajes(rutaJSON);
 
         // Carga de los datos del historial de ganadores
-        string rutaHistorialGanadores = "historial.csv";
-        Procesos.CargarHistorialGanadores(rutaHistorialGanadores, null);
+        //string rutaHistorialGanadores = "historial.csv";
+        //Procesos.CargarHistorialGanadores(rutaHistorialGanadores, null);
 
         // Variables para el ménu principal
         int opc = 0;
@@ -29,7 +28,7 @@ internal class Program
         List<Jugador> listaJugadores = new List<Jugador>();
 
         do{
-            InterfazRPG.MensajesYTituloJuego(1);
+            InterfazRPG.TituloJuego();
             
             Console.WriteLine("\n                              MENÚ PRINCIPAL                                   ");
             Console.WriteLine("\n                            1. Iniciar juego                                   ");
@@ -45,22 +44,25 @@ internal class Program
             // Si opc es 1, se desarrolla el juego
             if(opc == 1){
                 Jugador ganadorTorneo = new Jugador();
+                listaPersonajes = personajesJSON.LeerPersonajes(rutaJSON);
+                InterfazRPG.MostrarPersonajesJuego(listaPersonajes);
                 listaJugadores = Procesos.CargarJugadores(listaPersonajes);
+                InterfazRPG.MostrarJugadores(listaJugadores);
                 ganadorTorneo = Procesos.TorneoLuchadores(listaJugadores);
-                InterfazRPG.MensajesYTituloJuego(2);
-                Procesos.CargarHistorialGanadores(rutaHistorialGanadores, ganadorTorneo);
+                InterfazRPG.MensajeGanadorTorneo(ganadorTorneo);
+                //Procesos.CargarHistorialGanadores(rutaHistorialGanadores, ganadorTorneo);
+                listaJugadores.Clear();
             }
             // Si opc es 2, el usuario puede ver el historial de los ganadores y el top 5 de ganadores
             // Si opc es 3, no se ejecuta el juego 
         }while((opc != 3));
 
-        // LIMPIEZA
-        listaJugadores.Clear();
-        BorrarArchivo(rutaHistorialGanadores);
-        BorrarArchivo(rutaJSON);
-
+        // Borrar datos del juego
+        //BorrarArchivo(rutaHistorialGanadores);
+        //BorrarArchivo(rutaJSON);
+        
     }
-
+    
     public static void BorrarArchivo(string ruta){
         File.Delete(ruta);
     }
