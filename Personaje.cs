@@ -42,4 +42,21 @@ public class Personaje
     public string PaisOrigen { get => paisOrigen; set => paisOrigen = value;}
     public CaracteristicasPersonaje Caracteristicas { get => caracteristicas; set => caracteristicas = value; }
 
+    public void MostrarDatosYCaracteristicasPersonaje(){
+        Console.WriteLine($"\n========================== PERSONAJE: {Nombre.ToUpper()} ==========================");
+        Console.WriteLine($"\n┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ DATOS ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ");
+        Console.WriteLine($"| NOMBRE: {Nombre}");
+        Console.WriteLine($"| APODO: {Apodo}");
+        Console.WriteLine($"| TIPO DE PERSONAJE: {Tipo}");
+        Console.WriteLine($"| FECHA DE NACIMIENTO: {FechaNac.ToShortDateString()}");
+        Console.WriteLine($"| PAÍS DE ORIGEN: {PaisOrigen}");
+        Console.WriteLine($"| EDAD: {Edad}");
+        Console.WriteLine($"\n┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ CARACTERÍSTICAS ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ");
+        Console.WriteLine($"| VELOCIDAD: {Caracteristicas.Velocidad}");
+        Console.WriteLine($"| DESTREZA: {Caracteristicas.Destreza}");
+        Console.WriteLine($"| FUERZA: {Caracteristicas.Fuerza}");
+        Console.WriteLine($"| NIVEL: {Caracteristicas.Nivel}");
+        Console.WriteLine($"| BLINDAJE: {Caracteristicas.Blindaje}");
+        Console.WriteLine($"| SALUD: {Caracteristicas.Salud}");
+    }
 }
