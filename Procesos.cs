@@ -20,10 +20,8 @@ public static class Procesos
         defensaP2 = P2.Luchador.Caracteristicas.Velocidad * P2.Luchador.Caracteristicas.Blindaje;
 
         InterfazRPG.PresentacionCombatientes(P1, ataqueP1, defensaP1, efectividadP1, P2, ataqueP2, defensaP2, efectividadP2);
-        Console.WriteLine("\nPresione ENTER para continuar");
-        Console.ReadKey();
 
-        Console.WriteLine("\n═══════════════════════ ESTADO DEL COMBATE ═════════════════════════");
+        Console.WriteLine("\n═════════════════════ ESTADO DEL COMBATE ═════════════════════════");
         while((P1.Luchador.Caracteristicas.Salud > 0) && (P2.Luchador.Caracteristicas.Salud > 0)){
             rnd = new Random().Next(1, 6);
             Thread.Sleep(900);
@@ -42,9 +40,9 @@ public static class Procesos
 
             Thread.Sleep(1000);
             if(P1.Luchador.Caracteristicas.Salud > 0 && P2.Luchador.Caracteristicas.Salud > 0){
-                InterfazRPG.Comentarios(rnd);
+                InterfazRPG.ComentariosEstadoCombate(rnd);
             } else{
-                InterfazRPG.Comentarios(6);
+                InterfazRPG.ComentariosEstadoCombate(6);
             }
         }
     }
@@ -84,15 +82,13 @@ public static class Procesos
             J.Luchador = listaP[i];
             listaJugadores.Add(J);
         }
-
-        listaP.Clear();
         
         return listaJugadores;
     }
 
     public static Jugador DecidirGanadorDelCombate(Jugador P1, Jugador P2){
         string[] paisesLatinos = {"Venezuela", "México", "Argentina", "Uruguay", "Paraguay", "Colombia", "Perú", "Bolivia", "Chile", "Ecuador", "Brasil", 
-        "República Dominicana", "Cuba", "El Salvador", "Belice", "Honduras", "Guatemala", "Nicaragua", "Costa Rica", "Puerto Rico", "Panamá"};
+        "República Dominicana", "Cuba", "El Salvador", "Bélice", "Honduras", "Guatemala", "Nicaragua", "Costa Rica", "Puerto Rico", "Panamá"};
         Jugador ganadorPelea = new Jugador();
 
         if((P1.Luchador.Caracteristicas.Salud > P2.Luchador.Caracteristicas.Salud)){
@@ -109,14 +105,21 @@ public static class Procesos
             ganadorPelea = P2;
         }
 
-        // Criterio del bonus del ganador a partir de su nacionalidad
-        if(paisesLatinos.Contains(ganadorPelea.Luchador.PaisOrigen)){
-            ganadorPelea.Luchador.Caracteristicas.Fuerza += 1;
+        if(ganadorPelea.Luchador.Caracteristicas.Salud >= 70 && ganadorPelea.Luchador.Caracteristicas.Salud <= 80){
+            ganadorPelea.Luchador.Caracteristicas.Salud += 5;  
         } else{
-            ganadorPelea.Luchador.Caracteristicas.Velocidad += 1;
+            ganadorPelea.Luchador.Caracteristicas.Salud += 10;
         }
 
-        if(ganadorPelea.Luchador.Caracteristicas.Salud < 90) ganadorPelea.Luchador.Caracteristicas.Salud += 2;
+        // Criterio del bonus del ganador a partir de su nacionalidad
+        if(paisesLatinos.Contains(ganadorPelea.Luchador.PaisOrigen)){
+            ganadorPelea.Luchador.Caracteristicas.Fuerza += 2;
+            Console.WriteLine($"\n{ganadorPelea.NombreJugador}, SU PERSONAJE HA RECIBIDO UN AUMENTO EN SALUD Y ATAQUE");
+        } else{
+            ganadorPelea.Luchador.Caracteristicas.Velocidad += 2;
+            Console.WriteLine($"\n{ganadorPelea.NombreJugador}, SU PERSONAJE HA RECIBIDO UN AUMENTO EN SALUD Y DEFENSA");
+        }
+
 
         ganadorPelea.CalcularPuntaje();
         return ganadorPelea;
@@ -129,10 +132,11 @@ public static class Procesos
         int efectPersonajeP1 = 0, efectPersonajeP2 = 0;
         bool torneoFinalizado = false, primerCombate = true;
         List<int> aux = new List<int>();
-        int ind1 = 0, ind2 = 0;
+        int ind1 = 0, ind2 = 0, id = 9;
 
         while(!torneoFinalizado){
-
+            
+            InterfazRPG.MostrarEscenarioCombate(listaJ, id);
             // Se eligen a los jugadores del primer combate
             if(primerCombate){
                 ind1 = new Random().Next(0, 10);
@@ -164,6 +168,8 @@ public static class Procesos
             Combate(P1, P2, efectPersonajeP1, efectPersonajeP2);
             ganadorPelea = DecidirGanadorDelCombate(P1, P2);
 
+            id--;
+
             if(aux.Count == 10) torneoFinalizado = true;
 
         }
@@ -184,21 +190,27 @@ public static class Procesos
         }
     }
 
+    public static void PrecargarHistorialGanadores(string rutaHistorial){
+        FileInfo info = new FileInfo(rutaHistorial);
 
-    public static void CargarHistorialGanadores(string rutaArchivo, Jugador ganador){
-        FileInfo info = new FileInfo(rutaArchivo);
-
-        if(!ExisteHistorialGanadores(rutaArchivo)){
+        if(!ExisteHistorialGanadores(rutaHistorial)){
             // Si el archivo no existe, tendrá información de ganadores por defecto
-            using (StreamWriter sw = new StreamWriter(rutaArchivo))
+            using (StreamWriter sw = new StreamWriter(rutaHistorial))
             {
                 sw.WriteLine("RDA,430");
-                sw.WriteLine("ASW,321");
+                sw.WriteLine("JUG_10,321");
                 sw.WriteLine("DES,231");
-                sw.WriteLine("WER,201");
+                sw.WriteLine("JUG_1,201");
                 sw.WriteLine("TER,198");
             }
-        } else{
+        }
+    }
+
+    public static void GuardarGanadorAHistorial(string rutaArchivo, Jugador ganador){
+        FileInfo info = new FileInfo(rutaArchivo);
+
+        if(ExisteHistorialGanadores(rutaArchivo) && ganador != null){
+        
             int i = 0, cant = 0, puntajeGuardado = 0;
             List<string> registroGanadores = new List<string>();
             string linea = String.Empty, regGanador = String.Empty;
@@ -215,16 +227,14 @@ public static class Procesos
             using (StreamWriter sw = new StreamWriter(rutaArchivo))
             {
                 cant = registroGanadores.Count;
-
                 while((i < cant) && !guardado){
-                    lineaSplit = registroGanadores[i].Split(',');
-
+                        lineaSplit = registroGanadores[i].Split(',');
                     if(int.TryParse(lineaSplit[1], out puntajeGuardado)){
                         regGanador = $"{ganador.NombreJugador},{ganador.Puntaje}";
                         if(puntajeGuardado <= ganador.Puntaje){
                             registroGanadores.Insert(i, regGanador);
                             guardado = true;
-                        }
+                           }
                     }
 
                     i++;
@@ -234,21 +244,10 @@ public static class Procesos
 
                 registroGanadores.ForEach(sw.WriteLine);
             }
+            
+        } else{
+            Console.WriteLine("\nERROR. HAY PROBLEMAS PARA GUARDAR EL GANADOR DEL TORNEO\n");
         }
     }
 
-    public static Dictionary<string, string> LeerHistorial(string rutaHistorialGanadores){
-        Dictionary<string, string> puntajesJugadores = new Dictionary<string, string>();
-        string linea;
-        string[] lineaSplit;
-
-        using (StreamReader sr = new StreamReader(rutaHistorialGanadores)){
-            while( (linea = sr.ReadLine()) != null){
-                lineaSplit = linea.Split(',');
-                puntajesJugadores.Add(lineaSplit[0], lineaSplit[1]);
-            }
-        }
-
-        return puntajesJugadores; 
-    }
 }
