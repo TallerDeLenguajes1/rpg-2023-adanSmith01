@@ -42,8 +42,10 @@ public class Personaje
     public string PaisOrigen { get => paisOrigen; set => paisOrigen = value;}
     public CaracteristicasPersonaje Caracteristicas { get => caracteristicas; set => caracteristicas = value; }
 
-    public void MostrarDatosYCaracteristicasPersonaje(){
+    public void MostrarDatosYCaracteristicas(){
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine($"\n========================== PERSONAJE: {Nombre.ToUpper()} ==========================");
+        Console.ResetColor();
         Console.WriteLine($"\n┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ DATOS ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ");
         Console.WriteLine($"| NOMBRE: {Nombre}");
         Console.WriteLine($"| APODO: {Apodo}");
