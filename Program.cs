@@ -73,6 +73,7 @@ internal class Program
         for(int i = 0; i < MAX_CANT_JUGADORES; i++){
             Jugador J = new Jugador();
             if(i < cant){
+                Console.WriteLine("\nACLARACIÓN: Los nombres de los jugadores deben ser solo de 3 caracteres\n");
                 do{
                     Console.Write($"> NOMBRE DEL JUGADOR {i + 1}: ");
                     nombreJugador = Console.ReadLine();
