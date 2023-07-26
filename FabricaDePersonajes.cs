@@ -45,7 +45,7 @@ public class FabricaDePersonajes
         {"UG","Uganda"}, {"US","Estados Unidos de América"}, {"UY","Uruguay"}, {"UZ","Uzbekistán"}, {"VA","Ciudad del Vaticano"}, {"VC","San Vicente y las Granadinas"},
         {"VE","Venezuela"}, {"VG","Islas Vírgenes Británicas"}, {"VI","Islas Vírgenes de los Estados Unidos de América"}, {"VN","Vietnam"},
         {"VU","Vanuatu"}, {"WF","Wallis y Futuna"}, {"WS","Samoa"}, {"YE","Yemen"}, {"YT","Mayotte"},
-        {"ZA","Sudáfrica"}
+        {"ZA","Sudáfrica"}, {"XX","Desconocido"}
     };
     private string ObtenerCodigoPaisOrigen(string nombrePersonaje){
         string url = @$"https://api.nationalize.io?name={nombrePersonaje}";
@@ -54,46 +54,42 @@ public class FabricaDePersonajes
         peticion.ContentType = "application/json";
         peticion.Accept = "application/json";
         PersonajeOrigen p = null;
-        string codPais = String.Empty;
-        int rand;
+        string codPais = "XX";
+        int id = 0;
         
         try
         {
             using (WebResponse response = peticion.GetResponse()){
                 using (Stream strReader = response.GetResponseStream())
                     {
-                        if (strReader == null) return null;
+                        if (strReader == null) return codPais;
                         using (StreamReader objReader = new StreamReader(strReader))
                         {
                             List<string> codPaises = new List<string>(paises.Keys);
                             bool valido = false;
                             string info = objReader.ReadToEnd();
                             p = JsonSerializer.Deserialize<PersonajeOrigen>(info);
-                            while(!valido){
-                                rand = new Random().Next(0, 4);
-                                codPais = p.country[rand].country_id;
+                            while(!valido && (id < 4)){
+                                codPais = p.country[id].country_id;
                                 if(codPaises.Contains(codPais)) valido = true;
+                                id++;
                             }
+
+                            if(id > 4) codPais = "XX";
                         }
                     }
             }
         }
         catch (WebException ex)
         {
-            Console.WriteLine("Problemas de acceso a la API");
+            return "XX";
         }
 
         return codPais;
     }
 
     private string ObtenerPaisOrigenPersonaje(string nombrePersonaje){
-        if(ObtenerCodigoPaisOrigen(nombrePersonaje) != null){
-            return paises[ObtenerCodigoPaisOrigen(nombrePersonaje)];
-        }else{
-            List<string> codPaises = new List<string>(paises.Keys);
-            int rnd = new Random().Next(paises.Count);
-            return paises[codPaises[rnd]];
-        }
+        return paises[ObtenerCodigoPaisOrigen(nombrePersonaje)];
     }
 
     private Personaje GenerarPersonaje(TipoPersonaje tipo){
@@ -103,27 +99,27 @@ public class FabricaDePersonajes
 
         switch(tipo){
             case TipoPersonaje.Sicario:
-            string[ , ] nombresYApodosSicarios = {{"Dennis", "El oculto"},{"Sara", "La inocente"},{"Robert", "El ingenioso"}};
+            string[ , ] nombresYApodosSicarios = {{"Dennis", "El oculto"},{"Sara", "La inocente"},{"Robert", "El ingenioso"},{"Isabel", "La histerica"}};
             nuevoPersonaje.Nombre = nombresYApodosSicarios[aux, 0];
             nuevoPersonaje.Apodo = nombresYApodosSicarios[aux, 1];
             break;
             case TipoPersonaje.Psicopata:
-            string[ , ] nombresYApodosPsicopatas = {{"Jeremy", "El salvaje"},{"Sofia", "La gata"},{"Gaston", "El sangriento"}};
+            string[ , ] nombresYApodosPsicopatas = {{"Jeremy", "El salvaje"},{"Sofia", "La gata"},{"Gaston", "El sangriento"},{"Susan", "La tierna"}};
             nuevoPersonaje.Nombre = nombresYApodosPsicopatas[aux, 0];
             nuevoPersonaje.Apodo = nombresYApodosPsicopatas[aux, 1];
             break;
             case TipoPersonaje.Ladron:
-            string[ , ] nombresYApodosLadrones = {{"Jessica", "La sigilosa"},{"Lucas", "El nocturno"},{"Jorge", "El picaron"}};
+            string[ , ] nombresYApodosLadrones = {{"Jessica", "La sigilosa"},{"Lucas", "El nocturno"},{"Jorge", "El picaron"},{"Monica", "La atrevida"}};
             nuevoPersonaje.Nombre = nombresYApodosLadrones[aux, 0];
             nuevoPersonaje.Apodo = nombresYApodosLadrones[aux, 1];
             break;
             case TipoPersonaje.Mafioso:
-            string[ , ] nombresYApodosMafiosos = {{"Miguel", "El grosero"},{"Camila", "La gritona"},{"Joshua", "El agresivo"}};
+            string[ , ] nombresYApodosMafiosos = {{"Miguel", "El grosero"},{"Camila", "La gritona"},{"Joshua", "El agresivo"},{"Jessica", "La negociadora"}};
             nuevoPersonaje.Nombre = nombresYApodosMafiosos[aux, 0];
             nuevoPersonaje.Apodo = nombresYApodosMafiosos[aux, 1];
             break;
             case TipoPersonaje.Terrorista:
-            string[ , ] nombresYApodosTerroristas = {{"Ricardo", "El mas hábil"},{"Estela", "La actriz"},{"Guillermo", "El guerrero"}};
+            string[ , ] nombresYApodosTerroristas = {{"Ricardo", "El mas hábil"},{"Estela", "La actriz"},{"Guillermo", "El guerrero"},{"Rocio", "La tenebrosa"}};
             nuevoPersonaje.Nombre = nombresYApodosTerroristas[aux, 0];
             nuevoPersonaje.Apodo = nombresYApodosTerroristas[aux, 1];
             break;
@@ -136,10 +132,10 @@ public class FabricaDePersonajes
         nuevoPersonaje.PaisOrigen = ObtenerPaisOrigenPersonaje(nuevoPersonaje.Nombre);
         
         // Se generan los valores de las características del personaje en cuestión
-        nuevoPersonaje.Caracteristicas.Nivel = new Random().Next(3, 8);
+        nuevoPersonaje.Caracteristicas.Nivel = new Random().Next(3, 9);
         nuevoPersonaje.Caracteristicas.Velocidad = new Random().Next(5, 11);
         nuevoPersonaje.Caracteristicas.Destreza = new Random().Next(2, 6);
-        nuevoPersonaje.Caracteristicas.Fuerza = new Random().Next(3, 8);
+        nuevoPersonaje.Caracteristicas.Fuerza = new Random().Next(3, 9);
         nuevoPersonaje.Caracteristicas.Blindaje = new Random().Next(5, 11);
         nuevoPersonaje.Caracteristicas.Salud = 100;
 
