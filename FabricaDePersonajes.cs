@@ -95,7 +95,7 @@ public class FabricaDePersonajes
     private Personaje GenerarPersonaje(TipoPersonaje tipo){
         Personaje nuevoPersonaje = new Personaje();
         nuevoPersonaje.Caracteristicas = new CaracteristicasPersonaje();
-        int aux = new Random().Next(0, 3);
+        int aux = new Random().Next(0, 4);
 
         switch(tipo){
             case TipoPersonaje.Sicario:
