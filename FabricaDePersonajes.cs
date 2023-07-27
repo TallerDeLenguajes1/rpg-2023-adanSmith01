@@ -114,7 +114,7 @@ public class FabricaDePersonajes
             nuevoPersonaje.Apodo = nombresYApodosLadrones[aux, 1];
             break;
             case TipoPersonaje.Mafioso:
-            string[ , ] nombresYApodosMafiosos = {{"Miguel", "El grosero"},{"Camila", "La gritona"},{"Joshua", "El agresivo"},{"Jessica", "La negociadora"}};
+            string[ , ] nombresYApodosMafiosos = {{"Miguel", "El grosero"},{"Camila", "La gritona"},{"Joshua", "El agresivo"},{"Pamela", "La negociadora"}};
             nuevoPersonaje.Nombre = nombresYApodosMafiosos[aux, 0];
             nuevoPersonaje.Apodo = nombresYApodosMafiosos[aux, 1];
             break;
