@@ -2,7 +2,7 @@
 
 Death Fight es un juego donde el principal protagonista es la ALEATORIEDAD (o pseudoaleatoriedad, jeje)
 
-Básicamente, es un juego interactivo de lucha donde 10 jugadores pelean por conseguir la victoria.
+Básicamente, es un juego interactivo de lucha donde 10 jugadores pelean por conseguir la victoria en un torneo.
 Para cada jugador se le asigna un personaje de acuerdo al orden en como estos últimos aparecen y hay de 5 tipos:
 
 - Ladron :smiling_imp:.
