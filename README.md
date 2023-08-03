@@ -1,9 +1,7 @@
 ## Descripción del juego
 
 Death Fight es un juego donde el principal protagonista es la ALEATORIEDAD (o pseudoaleatoriedad, jeje)
-
-Básicamente, es un juego interactivo de lucha donde 10 jugadores pelean por conseguir la victoria en un torneo.
-Para cada jugador se le asigna un personaje de acuerdo al orden en como estos últimos aparecen y hay de 5 tipos:
+Se presentan 10 personajes con sus respectivos datos y características. Encontrandose cinco tipos de personaje:
 
 - Ladron :smiling_imp:.
 - Psicópata :smiling_imp:.
@@ -11,12 +9,16 @@ Para cada jugador se le asigna un personaje de acuerdo al orden en como estos ú
 - Sicario :smiling_imp:.
 - Terrorista :smiling_imp:.
 
-Cada personaje cuenta con características que definen su nivel de ataque y defensa, a excepción de la efectividad que se da de forma aleatoria.
+El personaje ganador del torneo se lleva el billón de dólares 🤑🤑🤑.
 
-Los combates se definen de forma aleatoria una vez concluido el primer combate. Es decir, se seleccionan dos jugadores aleatorios
-para el primer combate, y el ganador de ese combate luchará contra uno de los restantes 8 jugadores el cual se eligeeeee...aleatoriamente y así, sucesivamente, hasta el noveno y último combate.
+## ¿Cómo se juega?
 
-¡BUENA SUERTE, JUGADORES!
+Es un juego interactivo de lucha de hasta un máximo de 10 jugadores. A cada jugador participante se le asigna un personaje de acuerdo al orden 
+en como estos últimos fueron presentados, esto es, por ejemplo, al jugador 1 se le asigna el primer personaje presentado, al jugador 2 se le asigna el segundo personaje presentado, y así, sucesivamente.
 
-¡QUE GANE EL MEJOR! >:)
+Lo único que deberá o deberán hacer los participantes es ingresar su nombre para el juego, el cual debe ser solamente de tres caracteres. Y elegir el personaje adecuado...y ya 😅.
+
+¡BUENA SUERTE, LUCHADORES!
+
+¡QUE LO DISFRUTEN!
 
